@@ -30,3 +30,5 @@ cover/
 .mypy_cache/
 .dmypy.json
 dmypy.json
+
+sql_app.db
