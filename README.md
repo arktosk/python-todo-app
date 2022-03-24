@@ -10,5 +10,5 @@ python -m venv .venv
 python -m pip install pip-tools mypy
 # pip-compile requirements.in
 pip-sync
-uvicorn main:app --reload
+uvicorn app.main:app --reload
 ```
