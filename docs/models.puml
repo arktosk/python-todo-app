@@ -1,0 +1,35 @@
+@startuml sql-diagram
+
+left to right direction
+skinparam roundcorner 5
+skinparam linetype ortho
+skinparam shadowing false
+skinparam handwritten false
+skinparam class {
+    BackgroundColor white
+    ArrowColor #2688d4
+    BorderColor #2688d4
+}
+
+!define primary_key(x) <b><color:#b8861b><&key></color> x</b>
+!define foreign_key(x) <color:#aaaaaa><&key></color> x
+!define column(x) <color:#efefef><&media-record></color> x
+!define table(x) entity x << (T, white) >>
+
+table( user ) {
+    primary_key(id): INTEGER
+    column(email): CHARACTER VARYING
+    column(hashed_password): CHARACTER VARYING
+    column(is_active): BOOLEAN
+}
+
+table( todo ) {
+    primary_key( id ): INTEGER 
+    column(title): CHARACTER VARYING
+    column(description): CHARACTER VARYING
+    foreign_key(owner_id): INTEGER <<FK>>
+}
+
+user }|--|| todo
+
+@enduml
