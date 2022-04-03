@@ -4,12 +4,12 @@ Sample todo app that leverage Python as the backend.
 
 ## Development
 
+This app using poetry to manage their dependencies, so please make sure you have it installed.
+
 ```shell
 python -m venv .venv
 ./.venv/Scripts/activate
-python -m pip install pip-tools mypy
-# pip-compile requirements.in
-pip-sync
+poetry install
 ```
 
 Provide app configuration via `.env` file
