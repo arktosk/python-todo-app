@@ -3,10 +3,11 @@ from fastapi import Depends, HTTPException, status
 from sqlalchemy.orm import Session
 from jose import JWTError, jwt
 
-from . import settings, security, schemas, crud
+from . import config, security, schemas
+from .crud.users import get_user
 from .database import SessionLocal
 
-oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="auth/login")
 
 
 def get_db():
@@ -27,7 +28,7 @@ async def get_current_user(
     )
     try:
         payload = jwt.decode(
-            token, settings.SECRET_KEY, algorithms=[security.ALGORITHM]
+            token, config.settings.SECRET_KEY, algorithms=[security.ALGORITHM]
         )
         sub: str = payload.get("sub")
         if sub is None:
@@ -37,7 +38,7 @@ async def get_current_user(
         raise credentials_exception
     if token_payload.sub is None:
         raise credentials_exception
-    user = crud.get_user(db, user_id=token_payload.sub)
+    user = get_user(db, user_id=token_payload.sub)
     if user is None:
         raise credentials_exception
     return user
