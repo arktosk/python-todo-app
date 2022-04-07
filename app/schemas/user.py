@@ -1,6 +1,6 @@
 from pydantic import BaseModel
 
-from .todo import Todo
+from .task import Task
 
 class UserBase(BaseModel):
     email: str
@@ -13,7 +13,7 @@ class UserCreate(UserBase):
 class User(UserBase):
     id: int
     is_active: bool
-    todos: list[Todo] = []
+    tasks: list[Task] = []
 
     class Config:
         orm_mode = True

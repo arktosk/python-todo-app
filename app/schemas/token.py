@@ -10,8 +10,3 @@ class Token(BaseModel):
 
 class TokenPayload(BaseModel):
     sub: Optional[int] = None
-
-
-class TodoBase(BaseModel):
-    title: str
-    description: str | None = None

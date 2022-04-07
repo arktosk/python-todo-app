@@ -1,3 +1,3 @@
 from .token import Token, TokenPayload
-from .todo import Todo, TodoCreate
+from .task import Task, TaskCreate
 from .user import User, UserCreate

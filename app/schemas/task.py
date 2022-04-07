@@ -1,16 +1,16 @@
 from pydantic import BaseModel
 
 
-class TodoBase(BaseModel):
+class TaskBase(BaseModel):
     title: str
     description: str | None = None
 
 
-class TodoCreate(TodoBase):
+class TaskCreate(TaskBase):
     pass
 
 
-class Todo(TodoBase):
+class Task(TaskBase):
     id: int
     owner_id: int
 
